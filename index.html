@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Boba???</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <h1>Do you want to get some boba?</h1>
+        <p class="sub"> There is only one right answer.</p>
+         <div class="go-slot">
+      <a id="go" class="btn" href="flavour.html">Yes, I want to go get boba</a>
+    </div>
+    <p id="count" class="count"></p>
+    </main>
+     <script>
+    const btn = document.getElementById("go");
+    const counter = document.getElementById("count");
+    const MAX_DODGES = 8;   // how many times it escapes before you catch it
+    let dodges = 0;
+
+    function dodge() {
+      if (dodges >= MAX_DODGES) return;
+
+      const r = btn.getBoundingClientRect();
+       // first dodge: pin the button where it is, then let it run
+      if (!btn.classList.contains("running")) {
+        btn.style.left = r.left + "px";
+        btn.style.top = r.top + "px";
+        btn.classList.add("running");
+        btn.offsetWidth; // force a reflow so the first move animates
+      }
+
+      // pick a new spot that is far from the current one
+      const pad = 16;
+      const maxX = Math.max(pad, window.innerWidth - r.width - pad);
+      const maxY = Math.max(pad, window.innerHeight - r.height - pad);
+      let x, y, tries = 0;
+      do {
+        x = pad + Math.random() * (maxX - pad);
+        y = pad + Math.random() * (maxY - pad);
+        tries++;
+      } while (tries < 25 && Math.hypot(x - r.left, y - r.top) < 220);
+
+      btn.style.left = x + "px";
+      btn.style.top = y + "px";
+
+      dodges++;
+      counter.textContent = "It has escaped " + dodges + (dodges === 1 ? " time." : " times.");
+
+      if (dodges >= MAX_DODGES) {
+        btn.textContent = "Okay, you earned it. Go ahead!";
+        btn.classList.add("caught");
+        counter.textContent = "You caught it after " + dodges + " escapes.";
+      }
+    }
+
+    // pointerenter covers mouse and touch; keyboard users can still Tab to it and press Enter
+    btn.addEventListener("pointerenter", dodge);
+  </script>
+</body>
+</html>

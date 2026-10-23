@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your boba ingredients</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <!-- Shown only when no flavour was picked (for example, if someone opens this page directly) -->
+    <section class="fallback">
+      <h1>No flavour yet</h1>
+      <p class="sub">Pick a flavour first and its ingredients will show up here.</p>
+    </section>
+
+    <!-- Only the recipe matching the link (#taro, #strawberry or #matcha) is shown -->
+    <article class="recipe" id="taro">
+      <h2>Taro boba</h2>
+      <p>Makes one cup.</p>
+      <ul>
+        <li>3 tbsp taro powder (or mashed cooked taro root)</li>
+        <li>1 cup milk (or oat milk)</li>
+        <li>1/4 cup cooked tapioca pearls</li>
+        <li>1 tbsp brown sugar syrup</li>
+        <li>A cup of ice cubes</li>
+      </ul>
+      <p>Serve over ice with a wide straw.</p>
+    </article>
+
+    <article class="recipe" id="strawberry">
+      <h2>Strawberry boba</h2>
+      <p>Makes one cup.</p>
+      <ul>
+        <li>1/2 cup strawberries, fresh or frozen</li>
+        <li>1 cup milk</li>
+        <li>1/4 cup cooked tapioca pearls</li>
+        <li>1 tbsp sugar syrup</li>
+        <li>A cup of ice cubes</li>
+      </ul>
+      <p>Serve over ice with a wide straw.</p>
+    </article>
+
+    <article class="recipe" id="matcha">
+      <h2>Matcha boba</h2>
+      <p>Makes one cup.</p>
+      <ul>
+        <li>1 tsp matcha powder</li>
+        <li>2 tbsp hot water, to whisk the matcha</li>
+        <li>1 cup milk</li>
+        <li>1/4 cup cooked tapioca pearls</li>
+        <li>1 tbsp honey or brown sugar syrup</li>
+        <li>A cup of ice cubes</li>
+      </ul>
+      <p>Serve over ice with a wide straw.</p>
+    </article>
+
+    <div class="nav-links">
+      <a class="link" href="flavour.html">Pick a different flavour</a>
+      <a class="link" href="index.html">Start over</a>
+    </div>
+  </main>
+</body>
+</html>

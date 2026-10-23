@@ -1,0 +1,238 @@
+/* Boba site: shared styles for index.html, flavour.html, ingredients.html*/
+
+:root {
+    --ink: #fff1f5;
+    --pearl: #3a2219;
+    --milk: #1b1215;
+    --taro: #cdb9ee;
+    --taro-deep: #5b3f94;
+    --strawberry: #ffbfd0;
+    --strawberry-deep: #b8284f;
+    --matcha: #cfe5a3;
+    --matcha-deep: #43611a;
+    --bg: var(--milk);
+
+}
+
+*{ box-sizing: border-box;}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 2rem 1.25rem;
+    font-family: "baloo 2", "Trebucht MS", system-ui, sans-serif;
+    color: var(--ink);
+    color: var(--ink);
+    background-color: var(--bg);
+    /*scatterd tapioca pearls */
+    background-image:
+            radial-gradient(circle, rgba(255, 241, 245, 0.07) 0 7px, transparent 8px),
+            radial-gradient(circle, rgba(255, 241, 245, 0.045) 0 5px, transparent 6px);
+    background-size: 72px 72px;
+    background-position: 0 0, 36px 36px;
+    transition: background-color 0.3s;
+    
+}
+
+main {
+    width: min(100%, 54rem);
+    text-align: center;
+}
+
+h1 {
+    margin: 0 0 0.75rem;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 800;
+    line-height: 1.05;
+
+}
+
+.sub {
+    max-width: 34ch;
+    margin: 0 auto 2rem;
+    font-size: 1.2rem;
+
+}
+
+/* ---------- Buttons and links ---------- 8/
+
+.btn {
+display: inline-block;
+padding: 0.9rem 1.8rem;
+border: 0;
+border-radius: 999px;
+background: var(--ink);
+color: #2b1a14;
+font: inherit;
+font-size: 1.25rem;
+font-weight: 700;
+text-decoration: none;
+cursor: pointer;
+box-shadow: 0 6px 0 #a8949b;
+}
+
+.btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 2px 0 #a8949b;
+}
+
+.btn:focus-visible,
+.cup:focus-visible,
+.link:focus-visible {
+    outline: 4px solid var(--ink);
+    outline-offset: 4px;
+}
+
+.link {
+color: var(--ink)
+font-weight: 700;
+}
+ 
+
+/* ---------- Page 1: the runaway button ---------- */
+
+/* keeps the layout from collapsing when the buton leaves its spot */
+.go-slot { height: 5rem;}
+
+/* the script adds .runing the first time the button dodges */
+#go.running {
+    position: fixed;
+    z-index: 10;
+    white-space: nowrap;
+    transition: left 0.2s ease-out, top 0.2s ease-out;
+}
+
+#go.caught { background: var(--matcha); }
+
+.count {
+    min-height: 1.5rem;
+    margin-top: 1.5rem;
+    font-size: 1.1rem;
+
+}
+
+/* ---------- Page 2: flavour cups ---------- */
+
+.cups {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem 2rem;
+    margin-top: 3.5rem;
+}
+
+.cup {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    width: 11rem;
+    height: 15rem;
+    padding: 2rem 1rem 0;
+    border: 4px solid var(--ink);
+    border-radius: 1rem 1rem 3.5rem 3.5rem;
+     color: #2b1a14;
+    text-decoration: none;
+    transition: transform 0.2s;
+    /* two rows of pearls at the bottom of the cup */
+    background-image:
+        radial-gradient(circle, var(--pearl) 0 0.55rem, transparent 0.6rem),
+    radial-gradient(circle, var(--pearl) 0 0.55rem, transparent 0.6rem);
+  background-size: 1.5rem 1.5rem, 1.5rem 1.5rem;
+  background-position: 0 100%, 0.75rem calc(100% - 1.1rem);
+  background-repeat: repeat-x;
+}
+
+/* straw */
+.cup::before {
+  content: "";
+  position: absolute;
+  top: -2.6rem;
+  right: 2.4rem;
+  width: 0.8rem;
+  height: 3.8rem;
+  border-radius: 0.4rem;
+  background: var(--ink);
+  transform: rotate(10deg);
+}
+
+.cup:hover,
+.cup:focus-visible {
+   transform: translateY(-8px) rotate(-1.5deg);
+}
+
+.cup .name { font-size: 1.8rem; font-weight: 800; line-height: 1; }
+.cup .note { font-size: 1rem; line-height: 1.2; }
+ 
+.cup.taro { background-color: var(--taro); }
+.cup.strawberry { background-color: var(--strawberry); }
+.cup.matcha { background-color: var(--matcha); }
+
+
+/* ---------- Page 3: ingredient lists ---------- */
+ 
+/* each recipe stays hidden until the link ingredients.html#taro (etc.) targets it */
+.recipe { display: none; }
+.recipe:target { display: block; }
+ 
+.fallback { display: block; }
+body:has(.recipe:target) .fallback { display: none; }
+
+/* the page takes on the colour of the chosen flavour */
+body:has(#taro:target) { --bg: color-mix(in srgb, var(--taro) 22%, #1b1215); }
+body:has(#strawberry:target) { --bg: color-mix(in srgb, var(--strawberry) 22%, #1b1215); }
+body:has(#matcha:target) { --bg: color-mix(in srgb, var(--matcha) 22%, #1b1215); }
+
+.recipe {
+    max-width: 30rem;
+    margin: 0 auto;
+    padding: 2rem 2rem 1.75rem;
+    border: 4px solid var(--ink);
+    border-radius: 1.5rem;
+    background: #2a1c21;
+    text-align: left;
+}
+
+.recipe h2 { margin: 0 0 0.25rem; font-size: 2.2rem; font-weight: 800; line-height: 1.1; }
+#taro h2 { color: var(--taro); }
+#strawberry h2 { color: var(--strawberry); }
+#matcha h2 { color: var(--matcha); }
+.recipe p { margin: 0 0 1rem; }
+ 
+.recipe ul {
+  margin: 0 0 1rem;
+  padding: 0;
+  list-style: none;
+}
+ 
+.recipe li {
+  position: relative;
+  padding: 0.3rem 0 0.3rem 1.8rem;
+  font-size: 1.15rem;
+}
+ 
+.recipe li::before {
+  content: "";
+  position: absolute;
+  left: 0.2rem;
+  top: 0.85rem;
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+    background: var(--ink);
+}
+ 
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 2rem;
+  margin-top: 2rem;
+}
+ 
+@media (prefers-reduced-motion: reduce) {
+  #go.running, .cup, body { transition: none; }
+}
+ 
